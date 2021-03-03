@@ -2,6 +2,9 @@ import { dbContext } from "../db/DbContext";
 
 
 class StarsService{
+    async getGalaxyById(id) {
+      return await dbContext.Stars.findById(id)
+    }
     async edit(id, body) {
       return await dbContext.Stars.findByIdAndUpdate(id, body)
     }

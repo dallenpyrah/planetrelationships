@@ -9,6 +9,7 @@ export class StarsController extends BaseController {
       .get("", this.getAll)
       .post("", this.create)
       .put("/:id", this.edit)
+      .get("/:id/galaxy", this.getGalaxyById)
   }
   async getAll(req, res, next) {
     try {
@@ -28,6 +29,14 @@ export class StarsController extends BaseController {
   async edit(req, res, next){
     try {
       res.send(await starsService.edit(req.params.id, req.body))
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getGalaxyById(req,res,next){
+    try {
+      res.send(await starsService.find({ galaxy: req.params.id }))
     } catch (error) {
       next(error)
     }

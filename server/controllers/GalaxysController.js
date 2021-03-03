@@ -1,6 +1,7 @@
 import express from "express";
 import BaseController from "../utils/BaseController";
 import { galaxysService } from "../services/GalaxysService";
+import { starsService } from "../services/StarsService";
 
 export class GalaxysController extends BaseController {
   constructor() {
@@ -27,7 +28,7 @@ export class GalaxysController extends BaseController {
 
   async getAllStarsByGalaxyId(req,res,next){
     try {
-      res.send(await galaxysService.findStars(req.params.id))
+      res.send(await starsService.find({galaxy: req.params.id}))
     } catch (error) {
       next(error)
     }
